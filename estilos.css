@@ -3,9 +3,11 @@
 			font-family:'sans-serif',helvetica';
 			text-align:center;
 			color:white;
+			padding: 20px;
 		}
 		div{
 			background-color:#00022e;
+			padding: 20px;
 		}
 		header{
 			background-color:#2b32ff;
@@ -13,6 +15,7 @@
 		h1{
 			font-family:'sans-serif',helvetica';
 			color:white;
+			padding: 20px;
 		}
 		img {
  			 display: block;
@@ -26,6 +29,7 @@
 			font-family:'sans-serif',helvetica';
 			text-align:center;
 			color:white;
+			padding: 10px;
 		}
 		nav{
 			font-family:'sans-serif',helvetica';
