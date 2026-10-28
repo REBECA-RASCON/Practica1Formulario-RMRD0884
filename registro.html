@@ -1,41 +1,100 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iniciar sesion</title>
+  <title>Registro - MiTienda</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
-  <h1>REGISTRA TU CUENTA</h1>
-  
-   <form action="#" method="POST">
-    <label for="Email">Email:</label>
-    <input type="email" id="Email" placeholder="claraR@gmail.com" required><br>
-     
-    <label for="pnombre">nombre(s):</label>
-    <input type="text" id="pnombre"<br>
+  <header>
+    <h1>MiTienda</h1>
+  </header>
 
-    <label for="snombre">apellido(s):</label>
-    <input type="text" id="snombre"<br>
+  <main>
+    <form id="formRegistro" class="tarjeta" novalidate>
+      <h2>Registra tu cuenta</h2>
 
-    <label for="password">Establecer Contrasena:</label>
-    <input type="password" id="password"<br>
-     
-    <input type="reset"><br>
-    <input type="submit"><br>
+      <div id="mensaje" class="mensaje" role="alert" hidden></div>
 
-  </form>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="clara@gmail.com" required>
 
-  <div>
-    <a href="sesion.html">Ya estas registrao? inicia sesion aqui!</a>
-    <a href="index.html">Regresa a la pagina principal</a>
-  </div>
+      <label for="nombre">Nombre(s)</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="apellido">Apellido(s)</label>
+      <input type="text" id="apellido" name="apellido" required>
+
+      <label for="password">Establece una contrasena</label>
+      <input type="password" id="password" name="password" minlength="8" required>
+      <small>Minimo 8 caracteres.</small>
+
+      <label for="password2">Repite la contrasena</label>
+      <input type="password" id="password2" name="password2" required>
+
+      <div class="botones">
+        <button type="submit" class="btn">Crear cuenta</button>
+        <button type="reset" class="btn btn-secundario">Limpiar</button>
+      </div>
+
+      <p class="enlaces">
+        <a href="sesion.html">Ya tienes cuenta? Inicia sesion aqui</a><br>
+        <a href="index.html">Regresar a la pagina principal</a>
+      </p>
+    </form>
+  </main>
+
+  <footer>
+    <p>Proyecto de practica - no es una tienda real</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("formRegistro");
+    const mensaje = document.getElementById("mensaje");
+
+    function mostrar(texto, tipo) {
+      mensaje.textContent = texto;
+      mensaje.className = "mensaje " + tipo;
+      mensaje.hidden = false;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      mensaje.hidden = true;
+
+      if (!form.email.value.trim() || !form.nombre.value.trim() ||
+          !form.apellido.value.trim() || !form.password.value) {
+        mostrar("Llena todos los campos.", "error");
+        return;
+      }
+      if (form.password.value.length < 8) {
+        mostrar("La contrasena debe tener al menos 8 caracteres.", "error");
+        return;
+      }
+      if (form.password.value !== form.password2.value) {
+        mostrar("Las contrasenas no coinciden.", "error");
+        return;
+      }
+
+      try {
+        const resp = await fetch("registrar.php", {
+          method: "POST",
+          body: new FormData(form)
+        });
+        const datos = await resp.json();
+
+        if (datos.ok) {
+          mostrar("Cuenta creada. Te llevamos a iniciar sesion...", "exito");
+          setTimeout(() => { window.location.href = "sesion.html"; }, 1500);
+        } else {
+          mostrar(datos.mensaje, "error");
+        }
+      } catch (err) {
+        mostrar("No se pudo conectar con el servidor. Revisa que PHP y MySQL esten encendidos.", "error");
+      }
+    });
+  </script>
 </body>
-
-<footer>
-  <p>datos xtras(no modificar este texto)</p>
-</footer>
 </html>
