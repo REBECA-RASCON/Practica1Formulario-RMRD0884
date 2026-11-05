@@ -1,8 +1,10 @@
+/* Letra y margen de toda la pagina */
 body {
   font-family: Helvetica, sans-serif;
   margin: 0;
 }
 
+/* Texto del aviso de arriba */
 h3 {
   text-align: center;
   color: white;
@@ -10,26 +12,39 @@ h3 {
   margin: 0;
 }
 
+/* Color del aviso */
 .aviso {
   background-color: #00022e;
 }
 
+/* Barra azul con el nombre */
 header {
   background-color: #2b32ff;
 }
 
+/* Titulo principal */
 h1 {
   color: white;
   padding: 20px;
   margin: 0;
 }
 
-img {
+/* Imagen principal: centrada y al 50% */
+.imagen-principal {
   display: block;
   margin: auto;
   width: 50%;
 }
 
+/* Imágenes pequeñas: lado a lado */
+.lado-a-lado {
+  display: inline-block;
+  width: 150px;   /* ajusta el tamaño */
+  margin: 10px;
+  vertical-align: top;
+}
+
+/* Pie de pagina */
 footer {
   background-color: #00022e;
 }
@@ -41,6 +56,7 @@ footer p {
   margin: 0;
 }
 
+/* Menu de enlaces */
 nav {
   text-align: center;
   font-size: 20px;
@@ -48,11 +64,13 @@ nav {
   margin: 0 30px;
 }
 
+/* Enlaces sin subrayado */
 a {
   text-decoration: none;
   transition: background-color 0.3s;
 }
 
+/* Color al pasar el mouse sobre un enlace */
 a:hover {
   background-color: #ffffbf;
 }
@@ -61,6 +79,7 @@ main {
   padding: 20px;
 }
 
+/* Caja de los formularios */
 form {
   max-width: 350px;
   background-color: white;
@@ -70,6 +89,7 @@ form {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Cajas de texto */
 input {
   width: 100%;
   padding: 8px;
@@ -77,6 +97,7 @@ input {
   box-sizing: border-box;
 }
 
+/* Botones del formulario */
 .botones {
   display: flex;
   gap: 10px;
@@ -92,6 +113,7 @@ input {
   line-height: 1.8;
 }
 
+/* Cuadro de mensajes */
 .mensaje {
   padding: 10px;
   margin-bottom: 14px;
@@ -102,11 +124,13 @@ input {
   display: none;
 }
 
+/* Mensaje de error en rojo */
 .error {
   background-color: #fdecec;
   color: #8a1c14;
 }
 
+/* Mensaje de exito en verde */
 .exito {
   background-color: #e7f6ec;
   color: #14532d;
